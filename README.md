@@ -20,7 +20,7 @@ This package also provides an example of how to implement BT in ROS. Specificall
 
 ## Tutorials
 
-- [**Tutorial 1: Installation and introdution to overall workflow for BT-ROS**](docs/tutorial1.md)
+- [**Tutorial 1: Installation and introduction to overall workflow for BT-ROS**](docs/tutorial1.md)
 
 - [**Tutorial 2: Writing a simple BT node that calls a ROS Service**](docs/tutorial2.md)
 

@@ -16,8 +16,8 @@
 #ifndef BEHAVIOR_TREE_BT_ACTION_NODE_HPP_
 #define BEHAVIOR_TREE_BT_ACTION_NODE_HPP_
 
-#include <behaviortree_cpp_v3/action_node.h>
-#include <behaviortree_cpp_v3/bt_factory.h>
+#include <behaviortree_cpp/action_node.h>
+#include <behaviortree_cpp/bt_factory.h>
 #include <ros/ros.h>
 #include <actionlib/client/simple_action_client.h>
 
@@ -30,6 +30,7 @@ namespace BT
  * Note that the user must implement the methods:
  *
  *  - sendGoal
+ *  - onRunning
  *  - onResult
  *  - onFailedRequest
  *  - halt (optionally)
@@ -40,7 +41,7 @@ class RosActionNode : public BT::ActionNodeBase
 {
 protected:
 
-  RosActionNode(ros::NodeHandle& nh, const std::string& name, const BT::NodeConfiguration & conf):
+  RosActionNode(ros::NodeHandle& nh, const std::string& name, const BT::NodeConfig & conf):
   BT::ActionNodeBase(name, conf), node_(nh)
   {
     const std::string server_name = getInput<std::string>("server_name").value();

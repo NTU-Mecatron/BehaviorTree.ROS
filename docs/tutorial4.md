@@ -161,7 +161,7 @@ Open Groot2 and connect to port 1667. If setup correctly, you should be able to 
 
 ### Workflow for writing a complex BT
 
-You shoudld *avoid* writing any of the XML files yourself; editing XML file with an editor is only for small details. Instead, here is the suggested workflow:
+You should *avoid* writing any of the XML files yourself; editing XML file with an editor is only for small details. Instead, here is the suggested workflow:
 
 1. Create a `TreeNodeModels` XML file using a .cpp script. This is required by Groot2 in order to add custom nodes and create a BT from GUI.
 
