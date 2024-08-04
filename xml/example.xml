@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="main_tree">
+    <Sequence>
+      <AddTwoInts service_name="add_two_ints"
+                  timeout="100"
+                  first_int="3"
+                  second_int="4"
+                  sum="{add_two_result}"/>
+      <Delay delay_msec="1000">
+        <PrintValue message="{add_two_result}"/>
+      </Delay>
+      <Fibonacci order="5"
+                 server_name="fibonacci"
+                 timeout="500"
+                 result="{fibonacci_result}"/>
+      <Delay delay_msec="1000">
+        <PrintValue message="{fibonacci_result}"/>
+      </Delay>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="AddTwoInts">
+      <input_port name="service_name"
+                  type="std::string">name of the ROS service</input_port>
+      <input_port name="timeout"
+                  default="100"
+                  type="unsigned int">timeout to connect to server (milliseconds)</input_port>
+      <input_port name="first_int"
+                  type="int"/>
+      <input_port name="second_int"
+                  type="int"/>
+      <output_port name="sum"
+                   type="int"/>
+    </Action>
+    <Action ID="Fibonacci">
+      <input_port name="order"
+                  type="int"/>
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="timeout"
+                  default="500"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <output_port name="result"
+                   type="int"/>
+    </Action>
+    <Action ID="PrintValue">
+      <input_port name="message"
+                  type="int"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>

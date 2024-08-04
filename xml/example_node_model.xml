@@ -1,0 +1,20 @@
+<root BTCPP_format="4">
+    <TreeNodesModel>
+        <Action ID="AddTwoInts">
+            <input_port name="service_name" type="std::string">name of the ROS service</input_port>
+            <input_port name="timeout" type="unsigned int" default="100">timeout to connect to server (milliseconds)</input_port>
+            <input_port name="first_int" type="int"/>
+            <input_port name="second_int" type="int"/>
+            <output_port name="sum" type="int"/>
+        </Action>
+        <Action ID="Fibonacci">
+            <input_port name="order" type="int"/>
+            <input_port name="server_name" type="std::string">name of the Action Server</input_port>
+            <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
+            <output_port name="result" type="int"/>
+        </Action>
+        <Action ID="PrintValue">
+            <input_port name="message" type="int"/>
+        </Action>
+    </TreeNodesModel>
+</root>
