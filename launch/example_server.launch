@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="behaviortree_ros" type="example_server" name="example_server" output="screen" />
+</launch>
