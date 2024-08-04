@@ -9,7 +9,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 set(ROS_DEPENDENCIES
     roscpp std_msgs
-    behaviortree_cpp_v3
+    behaviortree_cpp
     actionlib_msgs
     actionlib
     message_generation)
@@ -60,16 +60,19 @@ include_directories( include ${catkin_INCLUDE_DIRS})
 #target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
 ######################################################
-# TESTS
+# EXAMPLES
 
-add_executable(test_bt test/test_bt.cpp)
-add_dependencies(test_bt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_bt ${catkin_LIBRARIES} )
+add_executable(example_bt src/main.cpp)
+add_dependencies(example_bt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(example_bt ${catkin_LIBRARIES} )
 
-add_executable(test_server test/test_server.cpp)
-add_dependencies(test_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_server ${catkin_LIBRARIES} )
+add_executable(example_server src/server.cpp)
+add_dependencies(example_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(example_server ${catkin_LIBRARIES} )
 
+add_executable(generate_tree_node_model scripts/generate_tree_node_model.cpp)
+add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
 ######################################################
 # INSTALL
 
