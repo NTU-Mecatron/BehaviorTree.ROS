@@ -2,6 +2,7 @@
 <root BTCPP_format="4">
   <BehaviorTree ID="main_tree">
     <Sequence>
+      <!-- <Condition ID="ObjDetectedStatus"/> -->
       <AddTwoInts service_name="add_two_ints"
                   timeout="100"
                   first_int="3"

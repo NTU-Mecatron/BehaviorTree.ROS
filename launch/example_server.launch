@@ -1,3 +1,5 @@
 <launch>
 	<node pkg="behaviortree_ros" type="example_server" name="example_server" output="screen" />
+	<node pkg="behaviortree_ros" type="python_service.py" name="python_service_server" output="screen" />
+
 </launch>
