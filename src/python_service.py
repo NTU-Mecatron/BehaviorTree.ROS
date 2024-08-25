@@ -8,14 +8,13 @@ from std_msgs.msg import Bool
 class RosCallback:
     def __init__(self):
         self.variable_true = False
-        self.srv_trigger_sub = rospy.Subscriber("srv_end_trigger", Bool, self.srv_end_callback)
-
-    def srv_end_callback(self, msg):
-        # Set the variable when the message is received
-        self.variable_true = msg.data
 
     def trigger(self):
-        return self.variable_true
+        i = 0
+        while i < 10:
+            print(i)
+            i += 1
+        return True
 
 # embed your class into the ros service server
 def handle_add_two_ints(req):
