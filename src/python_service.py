@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
 import rospy
 from behaviortree_ros.srv import AddTwoInts, AddTwoIntsResponse
 from std_msgs.msg import Bool
