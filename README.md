@@ -29,3 +29,6 @@ This package also provides an example of how to implement BT in ROS. Specificall
 - [**Tutorial 4: Writing BT, visualisation and logging**](docs/tutorial4.md)
 
 To skip to running the example, go to [Tutorial 4](docs/tutorial4.md#running-the-entire-example).
+
+## How to change your current nodes for Task into a service server
+Refer to this https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/python_service.py
