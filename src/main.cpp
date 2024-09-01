@@ -1,10 +1,10 @@
 #include "add_two_ints_client.h"
 #include "fibonacci_client.h"
+#include "sensor_nodes.h"
 #include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
-#include "sensor_nodes.h"
 
 using namespace BT;
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
-    // factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
+    factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
     RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);

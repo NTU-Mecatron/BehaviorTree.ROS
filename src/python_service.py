@@ -22,7 +22,7 @@ def handle_add_two_ints(req):
     # Wait until the variable is set to True by the subscriber callback
     while not class_callback.trigger():
         print("still in the loop")
-        rospy.sleep(0.1)  
+        # rospy.sleep(0.1)  
 
     # Once variable_true is True, perform the addition
     result = req.a + req.b

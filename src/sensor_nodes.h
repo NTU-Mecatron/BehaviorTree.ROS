@@ -5,8 +5,6 @@
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"
 #include "behaviortree_cpp/blackboard.h"
-#include <sensor_msgs/Range.h>
-#include <sensor_msgs/BatteryState.h>
 #include <std_msgs/Bool.h>
 #include <string>
 #include <fstream>
@@ -28,7 +26,7 @@ public:
     BT::NodeStatus tick() override
 	{
 		ROS_INFO ("Obj detection node running");
-		return (_obj_detection_state_msg.data == true) ? BT::NodeStatus::SUCCESS : BT::NodeStatus::FAILURE;
+		return (_obj_detection_state_msg.data == true) ? BT::NodeStatus::SUCCESS : BT::NodeStatus::RUNNING;
 	}
 
 	static BT::PortsList providedPorts()
