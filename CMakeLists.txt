@@ -12,7 +12,9 @@ set(ROS_DEPENDENCIES
     behaviortree_cpp
     actionlib_msgs
     actionlib
-    message_generation)
+    message_generation
+    yolo_object_detection
+    object_placing)
 
 find_package(catkin REQUIRED COMPONENTS ${ROS_DEPENDENCIES} )
 find_package(GTest)
@@ -73,6 +75,10 @@ target_link_libraries(example_server ${catkin_LIBRARIES} )
 add_executable(generate_tree_node_model scripts/generate_tree_node_model.cpp)
 add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
+
+add_executable(bt_task2 src/bt_task2.cpp)
+add_dependencies(bt_task2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(bt_task2 ${catkin_LIBRARIES} )
 ######################################################
 # INSTALL
 

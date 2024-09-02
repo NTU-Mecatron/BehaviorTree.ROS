@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="do_task">
+    <Sequence>
+      <PrintValue message="10"/>
+      <OnYolo timeout="1000"
+              service_name="on_yolo"/>
+      <DoTask timeout="300000"
+              server_name="objectDeposition"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="DoTask">
+      <input_port name="timeout"
+                  default="300000"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+    </Action>
+    <Action ID="OnYolo">
+      <input_port name="timeout"
+                  default="100000"
+                  type="unsigned int">timeout to connect to server (milliseconds)</input_port>
+      <input_port name="service_name"
+                  type="std::string">name of the ROS service</input_port>
+    </Action>
+    <Action ID="PrintValue">
+      <input_port name="message"
+                  type="int"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>
