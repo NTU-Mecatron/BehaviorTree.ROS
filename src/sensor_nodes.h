@@ -1,10 +1,10 @@
 #ifndef SENSOR_NODES_H
 #define SENSOR_NODES_H
 
+#include <behaviortree_ros/bt_condition_node.h>
 #include <ros/ros.h>
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"
-#include "behaviortree_cpp/blackboard.h"
 #include <std_msgs/Bool.h>
 #include <string>
 #include <fstream>
@@ -14,36 +14,19 @@ using std::string;
 using namespace BT;
 
 
-class ROSObjDetectedStatus : public BT::ConditionNode 
+// Specialized node that checks if an object is detected
+class ROSObjDetectedStatus : public ROSConditionNode<std_msgs::Bool>
 {
 public:
-	ROSObjDetectedStatus(const string& name, const NodeConfiguration& config) :
-	BT::ConditionNode(name, config)
-	{
-		_obj_detection_state_sub = _nh.subscribe("/CONDITION_obj_detection_status", 100, &ROSObjDetectedStatus::ObjDetectedCallback, this );
+    ROSObjDetectedStatus(const string& name, const NodeConfiguration& config) :
+    ROSConditionNode(name, config, "/CONDITION_obj_detection_status")
+    {}
+
+protected:
+    virtual bool checkCondition() const override
+    {
+        return _msg.data;
     }
-
-    BT::NodeStatus tick() override
-	{
-		ROS_INFO ("Obj detection node running");
-		return (_obj_detection_state_msg.data == true) ? BT::NodeStatus::SUCCESS : BT::NodeStatus::RUNNING;
-	}
-
-	static BT::PortsList providedPorts()
-	{
-		return {};
-	}
-	
-private:
-	ros::NodeHandle _nh;
-	ros::Subscriber _obj_detection_state_sub;
-	std_msgs::Bool _obj_detection_state_msg;
-
-	void ObjDetectedCallback(const std_msgs::Bool::ConstPtr& msg)
-	{   
-        std::cout << "getting obj detection status" <<std::endl;
-		_obj_detection_state_msg = *msg;
-	}
 };
 
 #endif
