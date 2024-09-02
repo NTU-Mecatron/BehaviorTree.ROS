@@ -1,5 +1,5 @@
-#ifndef SENSOR_NODES_H
-#define SENSOR_NODES_H
+#ifndef CONDITION_NODES_H
+#define CONDITION_NODES_H
 
 #include <behaviortree_ros/bt_condition_node.h>
 #include <ros/ros.h>
