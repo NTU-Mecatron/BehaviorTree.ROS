@@ -35,7 +35,7 @@ Refer to this https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/py
 
 ## How to create a condition node that communicates with rostopic
 ROS condition node wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/include/behaviortree_ros/bt_condition_node.h
-Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/sensor_nodes.h
+Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/condition_nodes.h
 
 [Screencast from 02-09-24 23:01:26.webm](https://github.com/user-attachments/assets/96a6ad92-5b24-453c-bfec-ff504ef33087)
 
