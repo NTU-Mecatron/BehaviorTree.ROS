@@ -1,5 +1,7 @@
 #include "on_yolo_client.h"
-#include "do_task.h"
+#include "center_movedown_action.h"
+#include "center_moveup_action.h"
+// #include "do_task.h"
 #include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
@@ -27,7 +29,10 @@ int main(int argc, char **argv)
     // factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
-    RegisterRosAction<DoTaskClient>(factory, "DoTask", nh);
+    RegisterRosAction<CenterMoveUpClient>(factory, "CenterMoveUp", nh);
+    RegisterRosAction<CenterMoveDownClient>(factory, "CenterMoveDown", nh);
+
+    // RegisterRosAction<DoTaskClient>(factory, "DoTask", nh);
     // RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
     
     std::string xml_file;

@@ -15,13 +15,15 @@ public:
     void sendRequest(RequestType& request) override
     {
         request.turn_on = true;
+        ros::Duration(12.0).sleep();
+
         expected_result_ = true;
         ROS_INFO("OnYolo: sending request");
     }
 
     NodeStatus onResponse(const ResponseType& response) override
     {
-        ros::Duration(12.0).sleep();
+        // ros::Duration(12.0).sleep();
         ROS_INFO("OnYolo: response received");
         if (response.yolo_status == expected_result_)
         {

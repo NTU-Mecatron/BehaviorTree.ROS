@@ -14,7 +14,7 @@ set(ROS_DEPENDENCIES
     actionlib
     message_generation
     yolo_object_detection
-    object_placing)
+    object_deposition)
 
 find_package(catkin REQUIRED COMPONENTS ${ROS_DEPENDENCIES} )
 find_package(GTest)
