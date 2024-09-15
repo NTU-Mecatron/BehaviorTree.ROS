@@ -13,7 +13,7 @@ public:
     void sendRequest(RequestType& request) override {
         ROS_INFO("Sending OnYolo request");
         request.turn_on = true;
-        ros::Duration(12.0).sleep();
+        // ros::Duration(12.0).sleep();
     }
 
     NodeStatus onResponse(const ResponseType& response) override

@@ -26,7 +26,7 @@ public:
 	}
 
     NodeStatus onFailedRequest(FailureCause failure) {
-        ROS_INFO("CenterMoveUp Action request failed: %d", static_cast<int>(failure))
+        ROS_INFO("CenterMoveUp Action request failed: %d", static_cast<int>(failure));
         return NodeStatus::FAILURE;
     }
 

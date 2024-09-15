@@ -1,6 +1,5 @@
 #include "on_yolo_client.h"
-#include "center_movedown_action.h"
-#include "center_moveup_action.h"
+#include "../src/center_client.h"
 #include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
@@ -27,8 +26,9 @@ int main(int argc, char **argv)
 
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
-    RegisterRosAction<CenterMoveUpClient>(factory, "CenterMoveUp", nh);
-    RegisterRosAction<CenterMoveDownClient>(factory, "CenterMoveDown", nh);
+    RegisterRosAction<CenterClient>(factory, "Center", nh);
+    // RegisterRosAction<CenterMoveUpClient>(factory, "CenterMoveUp", nh);
+    // RegisterRosAction<CenterMoveDownClient>(factory, "CenterMoveDown", nh);
     
     std::string xml_file;
     ros::param::get("~xml_file", xml_file);

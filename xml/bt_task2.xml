@@ -2,26 +2,21 @@
 <root BTCPP_format="4">
   <BehaviorTree ID="bt_task2">
     <Sequence>
-      <PrintValue message="12"/>
-      <OnYolo timeout="60000"
-              service_name="on_yolo"/>
-      <CenterMoveDown timeout="100000"
-                      server_name="center_movedown"/>
-      <CenterMoveUp timeout="100000"
-                    server_name="center_moveup"/>
+      <PrintValue message="10"/>
+      <Delay delay_msec="5000">
+        <OnYolo timeout="100000"
+                service_name="on_yolo"/>
+      </Delay>
+      <Delay delay_msec="13000">
+        <Center timeout="500000"
+                server_name="center"/>
+      </Delay>
     </Sequence>
   </BehaviorTree>
 
   <!-- Description of Node Models (used by Groot) -->
   <TreeNodesModel>
-    <Action ID="CenterMoveDown">
-      <input_port name="timeout"
-                  default="500"
-                  type="unsigned int">timeout to connect (milliseconds)</input_port>
-      <input_port name="server_name"
-                  type="std::string">name of the Action Server</input_port>
-    </Action>
-    <Action ID="CenterMoveUp">
+    <Action ID="Center">
       <input_port name="timeout"
                   default="500"
                   type="unsigned int">timeout to connect (milliseconds)</input_port>

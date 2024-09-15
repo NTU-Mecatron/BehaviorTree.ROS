@@ -29,6 +29,9 @@
   <build_depend>yolo_object_detection</build_depend>
   <run_depend>yolo_object_detection</run_depend>
 
+  <build_depend>common_msg_srv</build_depend>
+  <run_depend>common_msg_srv</run_depend>
+
   <build_depend>object_deposition</build_depend>
   <run_depend>object_deposition</run_depend>
 
