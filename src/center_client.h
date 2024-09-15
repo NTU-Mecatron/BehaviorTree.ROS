@@ -13,6 +13,7 @@ public:
     {
         // Define input ports for goal parameters
         return {
+            InputPort<int>("camera_Xangle"),
             InputPort<int>("target_object_id"),
             InputPort<int>("mode"),
             InputPort<std::vector<double>>("xyz_setpoint"),
@@ -57,7 +58,7 @@ public:
         return NodeStatus::FAILURE;
     }
 
-    virtual void halt() override {
+    void halt() override {
         if( status() == NodeStatus::RUNNING )
         {
         action_client_->cancelGoal();

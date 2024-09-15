@@ -1,5 +1,4 @@
 #include <behaviortree_ros/bt_service_node.h>
-// #include <yolo_object_detection/OnYolo.h>
 #include <common_msg_srv/SendBool.h>
 #include <ros/ros.h>
 
@@ -38,8 +37,5 @@ public:
         ROS_ERROR("Gripper request failed: %d", static_cast<int>(failure));
         return NodeStatus::FAILURE;
     }
-
-private:
-    bool expected_result_;
 
 };

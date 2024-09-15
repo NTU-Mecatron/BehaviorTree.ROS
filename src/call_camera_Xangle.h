@@ -1,5 +1,4 @@
 #include <behaviortree_ros/bt_service_node.h>
-// #include <yolo_object_detection/OnYolo.h>
 #include <common_msg_srv/SendFloat.h>
 #include <ros/ros.h>
 
@@ -20,7 +19,6 @@ public:
     void sendRequest(RequestType& request) override {
         getInput("x_angle", request.data);
         ROS_INFO("Sending CameraXAngle request");
-        // ros::Duration(12.0).sleep();
     }
 
     NodeStatus onResponse(const ResponseType& response) override
@@ -38,8 +36,5 @@ public:
         ROS_ERROR("CameraXAngle request failed: %d", static_cast<int>(failure));
         return NodeStatus::FAILURE;
     }
-
-private:
-    bool expected_result_;
 
 };
