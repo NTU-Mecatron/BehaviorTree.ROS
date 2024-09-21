@@ -1,5 +1,5 @@
-#ifndef BT_CONDITION_NODES_H
-#define BT_CONDITION_NODES_H
+#ifndef BT_SUBSCRIBER_NODE_H
+#define BT_SUBSCRIBER_NODE_H
 
 #include <ros/ros.h>
 #include "behaviortree_cpp/behavior_tree.h"
@@ -12,7 +12,7 @@
 using std::string;
 using namespace BT;
 
-// Generic wrapper class for ROS-based Condition Nodes
+// Generic wrapper class for ROS-based BT Condition/Subscribers
 template <typename T>
 class ROSConditionNode : public BT::ConditionNode 
 {

@@ -1,7 +1,7 @@
 #ifndef CONDITION_NODES_H
 #define CONDITION_NODES_H
 
-#include <behaviortree_ros/bt_condition_node.h>
+#include <behaviortree_ros/bt_subscriber_node.h>
 #include <ros/ros.h>
 #include "behaviortree_cpp/behavior_tree.h"
 #include "behaviortree_cpp/bt_factory.h"

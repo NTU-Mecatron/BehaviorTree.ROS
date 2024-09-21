@@ -5,6 +5,7 @@
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
+#include "publisher_node.h"
 
 using namespace BT;
 
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
+    factory.registerNodeType <ROSPublisherNode>("RobotArmPos");
     factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
