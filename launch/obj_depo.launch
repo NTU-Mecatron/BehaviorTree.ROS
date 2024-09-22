@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="behaviortree_ros" type="obj_depo" name="obj_depo" output="screen">
+        <param name="xml_file" value="$(find behaviortree_ros)/xml/object_deposition.xml" />
+        <param name="log_file" value="$(find behaviortree_ros)/btlog/object_deposition.btlog" />
+    </node>
+</launch>

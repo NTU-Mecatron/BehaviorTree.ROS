@@ -19,10 +19,10 @@ public:
     }
 
     void sendRequest(RequestType& request) override {
-        if (!getInput<int>("theta1", goal.theta1)) {
+        if (!getInput<int>("theta1", request.theta1)) {
             throw BT::RuntimeError("Missing required input [theta1]");
         }
-        if (!getInput<int>("theta2", goal.theta2)) {
+        if (!getInput<int>("theta2", request.theta2)) {
             throw BT::RuntimeError("Missing required input [theta2]");
         }
         ROS_INFO("Sending MoveArm request");

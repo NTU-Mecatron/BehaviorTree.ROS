@@ -1,11 +1,9 @@
 #include "../src/on_yolo_client.h"
-// #include "../src/do_task.h"
 #include "../src/print_value.h"
-// #include "../src/center_movedown_action.h"
-// #include "../src/center_moveup_action.h"
 #include "../src/call_gripper_client.h"
 #include "../src/call_camera_Xangle.h"
 #include "../src/center_client.h"
+#include "../src/search_bin.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/xml_parsing.h>
 using namespace BT;
@@ -25,9 +23,12 @@ int main(int argc, char **argv)
     // You need to edit this section to include your custom nodes
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
+    RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
+    RegisterRosAction<SearchBinClient>(factory, "SearchBin", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<CameraXAngleClient>(factory, "CameraXAngle", nh);
-    RegisterRosAction<GripperClient>(factory, "Gripper", nh);
+    RegisterRosAction<CenterClient>(factory, "MoveDown", nh);
+    RegisterRosAction<CenterClient>(factory, "MoveUp", nh);
+    RegisterRosService<GripperClient>(factory, "Gripper", nh);
 
     // RegisterRosAction<CenterMoveUpClient>(factory, "CenterMoveUp", nh);
     // RegisterRosAction<CenterMoveDownClient>(factory, "CenterMoveDown", nh);

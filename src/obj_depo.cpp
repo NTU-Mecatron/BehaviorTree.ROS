@@ -1,17 +1,22 @@
-#include "add_two_ints_client.h"
-#include "fibonacci_client.h"
-#include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
-#include "sensor_nodes.h"
 
-using namespace BT;
+#include "call_camera_Xangle.h"
+#include "on_yolo_client.h"
+#include "center_client.h"
+#include "print_value.h"
+#include "search_bin.h"
+// #include "search.h"
+// #include "move_arm.h"
+#include "call_gripper_client.h"
 
 // headers for signal handling
 #include <unistd.h>
 #include <stdio.h>
 #include <signal.h>
+
+using namespace BT;
 
 volatile sig_atomic_t stop;
 void inthand(int signum) {
@@ -25,11 +30,17 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
-    // factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
     factory.registerNodeType<PrintValue>("PrintValue");
-    RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
-    RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
-    
+
+    RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
+    RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
+    RegisterRosAction<SearchBinClient>(factory, "SearchBin", nh);
+    RegisterRosAction<CenterClient>(factory, "Center", nh);
+    RegisterRosAction<CenterClient>(factory, "MoveDown", nh);
+    RegisterRosAction<CenterClient>(factory, "MoveUp", nh);
+    RegisterRosService<GripperClient>(factory, "Gripper", nh);
+
+     
     std::string xml_file;
     ros::param::get("~xml_file", xml_file);
     auto tree = factory.createTreeFromFile(xml_file);
@@ -47,8 +58,6 @@ int main(int argc, char **argv)
     signal(SIGINT, inthand);
 
     while( !stop && ros::ok() && (status == NodeStatus::RUNNING))
-    // while( ros::ok())
-
     {
         ros::spinOnce();
         status = tree.tickOnce();

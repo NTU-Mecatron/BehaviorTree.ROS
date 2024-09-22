@@ -5,8 +5,8 @@
 #include "on_yolo_client.h"
 #include "center_client.h"
 #include "print_value.h"
-#include "search.h"
-#include "move_arm.h"
+// #include "search.h"
+// #include "move_arm.h"
 #include "call_gripper_client.h"
 
 // headers for signal handling
@@ -31,11 +31,11 @@ int main(int argc, char **argv)
     factory.registerNodeType<PrintValue>("PrintValue");
 
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
-    RegisterRosAction<ObjectSearch>(factory, "ObjectSearch", nh);
+    // RegisterRosAction<ObjectSearch>(factory, "ObjectSearch", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
     RegisterRosAction<CenterClient>(factory, "MoveDown", nh);
     RegisterRosAction<CenterClient>(factory, "MoveUp", nh);
-    RegisterRosService<MoveArm>(factory, "MoveArm", nh);
+    // RegisterRosService<MoveArm>(factory, "MoveArm", nh);
     RegisterRosService<GripperClient>(factory, "Gripper", nh);
      
     std::string xml_file;

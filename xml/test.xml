@@ -1,0 +1,58 @@
+<root BTCPP_format="4">
+    <TreeNodesModel>
+        <Action ID="CameraXAngle">
+            <input_port name="service_name" type="std::string">name of the ROS service</input_port>
+            <input_port name="timeout" type="unsigned int" default="100">timeout to connect to server (milliseconds)</input_port>
+            <input_port name="x_angle" type="float"/>
+        </Action>
+        <Action ID="Center">
+            <input_port name="server_name" type="std::string">name of the Action Server</input_port>
+            <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
+            <input_port name="target_object_id" type="int"/>
+            <input_port name="xyz_margin" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="mode" type="int"/>
+            <input_port name="xyz_setpoint" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="duration" type="float"/>
+        </Action>
+        <Action ID="Gripper">
+            <input_port name="service_name" type="std::string">name of the ROS service</input_port>
+            <input_port name="timeout" type="unsigned int" default="100">timeout to connect to server (milliseconds)</input_port>
+            <input_port name="close_gripper" type="bool"/>
+        </Action>
+        <Action ID="MoveDown">
+            <input_port name="server_name" type="std::string">name of the Action Server</input_port>
+            <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
+            <input_port name="target_object_id" type="int"/>
+            <input_port name="xyz_margin" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="mode" type="int"/>
+            <input_port name="xyz_setpoint" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="duration" type="float"/>
+        </Action>
+        <Action ID="MoveUp">
+            <input_port name="server_name" type="std::string">name of the Action Server</input_port>
+            <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
+            <input_port name="target_object_id" type="int"/>
+            <input_port name="xyz_margin" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="mode" type="int"/>
+            <input_port name="xyz_setpoint" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="duration" type="float"/>
+        </Action>
+        <Action ID="OnYolo">
+            <input_port name="timeout" type="unsigned int" default="100">timeout to connect to server (milliseconds)</input_port>
+            <input_port name="service_name" type="std::string">name of the ROS service</input_port>
+        </Action>
+        <Action ID="PrintValue">
+            <input_port name="message" type="int"/>
+        </Action>
+        <Action ID="SearchBin">
+            <input_port name="server_name" type="std::string">name of the Action Server</input_port>
+            <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
+            <input_port name="target_object_id" type="int"/>
+            <input_port name="delta_X_angle" type="int"/>
+            <input_port name="xyz_margin" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="angle_setpoint" type="int"/>
+            <input_port name="xyz_setpoint" type="std::array&lt;float, 3ul&gt;"/>
+            <input_port name="duration" type="float"/>
+        </Action>
+    </TreeNodesModel>
+</root>
