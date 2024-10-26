@@ -20,7 +20,12 @@ public:
             InputPort<int>("mode"),
             InputPort<std::array<float, 3>>("xyz_setpoint"),
             InputPort<std::array<float, 3>>("xyz_margin"),
-            InputPort<float>("duration")
+            InputPort<float>("duration"),
+            InputPort<int>("avoid_object_id"),
+            InputPort<float>("safety_limit"),
+            InputPort<float>("left_border"),
+            InputPort<float>("right_border"),
+            InputPort<std::string>("filename"),
         };
     }
 
@@ -48,6 +53,27 @@ public:
         if (!getInput<float>("duration", goal.duration)) {
             throw BT::RuntimeError("Missing required input [duration]");
         }
+
+        if (!getInput<int>("avoid_object_id", goal.avoid_object_id)) {
+            throw BT::RuntimeError("Missing required input [avoid_object_id]");
+        }
+        if (!getInput<float>("safety_limit", goal.safety_limit)) {
+            throw BT::RuntimeError("Missing required input [safety_limit]");
+        }
+        if (!getInput<float>("left_border", goal.left_border)) {
+            throw BT::RuntimeError("Missing required input [left_border]");
+        }
+        if (!getInput<float>("right_border", goal.right_border)) {
+            throw BT::RuntimeError("Missing required input [right_border]");
+        }
+        if (!getInput<float>("right_border", goal.right_border)) {
+            throw BT::RuntimeError("Missing required input [right_border]");
+        }
+        std::string filename;
+        if (!getInput<std::string>("filename", goal.filename)) {
+            throw BT::RuntimeError("missing required input [filename]");
+        }
+        
 		ROS_INFO("Sending Center Action request");
 		return true;
 	}

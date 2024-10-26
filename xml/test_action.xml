@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="test">
+    <Sequence>
+      <OnYolo timeout="10000"
+              service_name="on_yolo"/>
+      <MoveWithDuration server_name="blind_movement"
+                        timeout="500000"
+                        yaw="0"
+                        z="0"
+                        x="0.6"
+                        y="0"
+                        duration="3"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="MoveWithDuration">
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="timeout"
+                  default="500"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="yaw"
+                  type="float"/>
+      <input_port name="z"
+                  type="float"/>
+      <input_port name="x"
+                  type="float"/>
+      <input_port name="y"
+                  type="float"/>
+      <input_port name="duration"
+                  type="float"/>
+    </Action>
+    <Action ID="OnYolo">
+      <input_port name="timeout"
+                  default="100"
+                  type="unsigned int">timeout to connect to server (milliseconds)</input_port>
+      <input_port name="service_name"
+                  type="std::string">name of the ROS service</input_port>
+    </Action>
+  </TreeNodesModel>
+
+</root>

@@ -3,10 +3,10 @@
 
 using namespace BT;
 
-class MoveWithDuration: public RosActionNode<common_action_service_servers::MoveWithDurationAction>
+class MoveWithDurationClient: public RosActionNode<common_action_service_servers::MoveWithDurationAction>
 {
 public:
-    MoveWithDuration( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
+    MoveWithDurationClient( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
 		RosActionNode<common_action_service_servers::MoveWithDurationAction>(handle, name, conf) {}
 
     static PortsList providedPorts()
@@ -23,16 +23,16 @@ public:
 
     bool sendGoal(GoalType& goal) override {
 		// Get parameters from BT input ports
-        if (!getInput<float>("x", goal.target_object_id)) {
+        if (!getInput<float>("x", goal.x)) {
             throw BT::RuntimeError("Missing required input [x]");
         }
-        if (!getInput<float>("y", goal.mode)) {
+        if (!getInput<float>("y", goal.y)) {
             throw BT::RuntimeError("Missing required input [y]");
         }
-        if (!getInput<float>("z", goal.xyz_setpoint)) {
+        if (!getInput<float>("z", goal.z)) {
             throw BT::RuntimeError("Missing required input [z]");
         }
-        if (!getInput<float>("yaw", goal.xyz_margin)) {
+        if (!getInput<float>("yaw", goal.yaw)) {
             throw BT::RuntimeError("Missing required input [yaw]");
         }
         if (!getInput<float>("duration", goal.duration)) {

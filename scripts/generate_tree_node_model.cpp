@@ -1,9 +1,11 @@
 #include "../src/on_yolo_client.h"
-#include "../src/print_value.h"
-#include "../src/call_gripper_client.h"
-#include "../src/call_camera_Xangle.h"
-#include "../src/center_client.h"
-#include "../src/search_bin.h"
+#include "../src/move_with_duration.h"
+#include <../src/center_client.h>
+#include <../src/search_rotate.h>
+#include <../src/search_rotate_camera.h>
+#include <../src/call_camera_Xangle.h>
+#include <move_arm.h>
+
 #include <ros/ros.h>
 #include <behaviortree_cpp/xml_parsing.h>
 using namespace BT;
@@ -24,17 +26,10 @@ int main(int argc, char **argv)
     factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
     RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
-    RegisterRosAction<SearchBinClient>(factory, "SearchBin", nh);
+    RegisterRosAction<SearchRotateCameraClient>(factory, "SearchBin", nh);
+    RegisterRosAction<SearchRotateClient>(factory, "SearchBin", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<CenterClient>(factory, "MoveDown", nh);
-    RegisterRosAction<CenterClient>(factory, "MoveUp", nh);
-    RegisterRosService<GripperClient>(factory, "Gripper", nh);
-
-    // RegisterRosAction<CenterMoveUpClient>(factory, "CenterMoveUp", nh);
-    // RegisterRosAction<CenterMoveDownClient>(factory, "CenterMoveDown", nh);
-    // RegisterRosAction<DoTaskClient>(factory, "DoTask", nh);
-    // RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
-    // RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
+    
     // End of section
 
     // Modify your xml_file_path here

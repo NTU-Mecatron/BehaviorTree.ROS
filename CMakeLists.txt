@@ -14,7 +14,6 @@ set(ROS_DEPENDENCIES
     actionlib
     message_generation
     yolo_object_detection
-    # object_deposition
     common_msg_srv
     common_action_service_servers
     )
@@ -78,6 +77,14 @@ target_link_libraries(bt_task2 ${catkin_LIBRARIES} )
 add_executable(obj_depo src/obj_depo.cpp)
 add_dependencies(obj_depo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(obj_depo ${catkin_LIBRARIES} )
+
+add_executable(navigation src/navigation.cpp)
+add_dependencies(navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(navigation ${catkin_LIBRARIES} )
+
+add_executable(test_action src/test_action.cpp)
+add_dependencies(test_action ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_action ${catkin_LIBRARIES} )
 ######################################################
 # INSTALL
 

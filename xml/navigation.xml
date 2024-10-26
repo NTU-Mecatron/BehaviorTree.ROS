@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="nav">
+    <Sequence>
+      <OnYolo timeout="1000"
+              service_name="on_yolo"/>
+      <Delay delay_msec="15000">
+        <Sequence>
+          <Center server_name="center"
+                  timeout="500000"
+                  target_object_id="2"
+                  mode="0"
+                  xyz_setpoint="0.5, 0.5, 0.5"
+                  xyz_margin="0.2, 0.2, 0.2"
+                  duration="2"
+                  avoid_object_id="3"
+                  safety_limit="0.02"
+                  left_border="0.25"
+                  right_border="0.75"/>
+          <Center server_name="center"
+                  timeout="500000"
+                  target_object_id="2"
+                  mode="0"
+                  xyz_setpoint="0.60, 0.5, 0.5"
+                  xyz_margin="0.2, 0.2, 0.2"
+                  duration="1"
+                  avoid_object_id="3"
+                  safety_limit="0.02"
+                  left_border="0.25"
+                  right_border="0.75"/>
+        </Sequence>
+      </Delay>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="1"
+              mode="0"
+              xyz_setpoint="0.15 , 0.5, 0.5"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="2"
+              avoid_object_id="-1"
+              safety_limit="0"
+              left_border="0"
+              right_border="0"/>
+      <RotateSearch server_name="search_rotate"
+                    timeout="500000"
+                    target_object_id="4"
+                    duration="3"
+                    yaw_iter="0.2"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="4"
+              mode="0"
+              xyz_setpoint="0.13, 0.5, 0.52"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0"
+              avoid_object_id="-1"
+              safety_limit="0"
+              left_border="0"
+              right_border="0"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="4"
+              mode="0"
+              xyz_setpoint="0.09, 0.5, 0.52"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0"
+              avoid_object_id="-1"
+              safety_limit="0"
+              left_border="0"
+              right_border="0"/>
+      <RotateSearch server_name="search_rotate"
+                    timeout="500000"
+                    target_object_id="6"
+                    duration="1"
+                    yaw_iter="0.2"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="6"
+              mode="0"
+              xyz_setpoint="0.13, 0.5, 0.5"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0.5"
+              avoid_object_id="4"
+              safety_limit="0.02"
+              left_border="0.25"
+              right_border="0.75"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="6"
+              mode="0"
+              xyz_setpoint="0.09, 0.5, 0.52"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0.5"
+              avoid_object_id="4"
+              safety_limit="0.02"
+              left_border="0.25"
+              right_border="0.75"/>
+      <RotateSearch server_name="search_rotate"
+                    timeout="500000"
+                    target_object_id="0"
+                    duration="3"
+                    yaw_iter="0.2"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="0"
+              mode="0"
+              xyz_setpoint="0.13, 0.5, 0.5"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0.5"
+              avoid_object_id="6"
+              safety_limit="0.02"
+              left_border="0.25"
+              right_border="0.75"/>
+      <Center server_name="center"
+              timeout="500000"
+              target_object_id="0"
+              mode="0"
+              xyz_setpoint="0.09, 0.5, 0.5"
+              xyz_margin="0.2, 0.2, 0.2"
+              duration="0.5"
+              avoid_object_id="6"
+              safety_limit="0.02"
+              left_border="0.25"
+              right_border="0.75"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <!-- Description of Node Models (used by Groot) -->
+  <TreeNodesModel>
+    <Action ID="Center">
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="timeout"
+                  default="500"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="target_object_id"
+                  type="int"/>
+      <input_port name="mode"
+                  type="int"/>
+      <input_port name="xyz_setpoint"
+                  type="std::array&lt;float, 3ul&gt;"/>
+      <input_port name="xyz_margin"
+                  type="std::array&lt;float, 3ul&gt;"/>
+      <input_port name="duration"
+                  type="float"/>
+      <input_port name="avoid_object_id"
+                  type="int"/>
+      <input_port name="safety_limit"
+                  type="float"/>
+      <input_port name="left_border"
+                  type="float"/>
+      <input_port name="right_border"
+                  type="float"/>
+    </Action>
+    <Action ID="OnYolo">
+      <input_port name="timeout"
+                  default="100"
+                  type="unsigned int">timeout to connect to server (milliseconds)</input_port>
+      <input_port name="service_name"
+                  type="std::string">name of the ROS service</input_port>
+    </Action>
+    <Action ID="RotateSearch">
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="timeout"
+                  default="500"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="target_object_id"
+                  type="int"/>
+      <input_port name="duration"
+                  type="float"/>
+      <input_port name="yaw_iter"
+                  type="int"/>
+    </Action>
+  </TreeNodesModel>
+
+</root>

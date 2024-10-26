@@ -1,15 +1,15 @@
 #include <behaviortree_ros/bt_action_node.h>
-#include <common_action_service_servers/SearchBinAction.h>
+#include <common_action_service_servers/SearchRotateCameraAction.h>
 #include <array>
 #include "conversions.h"
 
 using namespace BT;
 
-class SearchBinClient: public RosActionNode<common_action_service_servers::SearchBinAction>
+class SearchRotateCameraClient: public RosActionNode<common_action_service_servers::SearchRotateCameraAction>
 {
 public:
-    SearchBinClient( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
-		RosActionNode<common_action_service_servers::SearchBinAction>(handle, name, conf) {}
+    SearchRotateCameraClient( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
+		RosActionNode<common_action_service_servers::SearchRotateCameraAction>(handle, name, conf) {}
 
     static PortsList providedPorts()
     {
@@ -21,6 +21,7 @@ public:
             InputPort<std::array<float, 3>>("xyz_setpoint"),
             InputPort<std::array<float, 3>>("xyz_margin"),
             InputPort<float>("duration"),
+            InputPort<std::string>("filename"),
         };
     }
 
@@ -50,22 +51,26 @@ public:
         if (!getInput<float>("duration", goal.duration)) {
             throw BT::RuntimeError("Missing required input [duration]");
         }
-		ROS_INFO("Sending SearchBin Action request");
+        std::string filename;
+        if (!getInput<std::string>("filename", goal.filename)) {
+            throw BT::RuntimeError("missing required input [filename]");
+        }
+		ROS_INFO("Sending SearchRotateCamera Action request");
 		return true;
 	}
 
     NodeStatus onResult( const ResultType& res) override {
         if (res.success) {
-            ROS_INFO("SearchBin Action returned SUCCESS");
+            ROS_INFO("SearchRotateCamera Action returned SUCCESS");
             return NodeStatus::SUCCESS;
         } else {
-            ROS_INFO("SearchBin Action returned FAILURE");
+            ROS_INFO("SearchRotateCamera Action returned FAILURE");
 			return NodeStatus::FAILURE;
         }
 	}
 
     NodeStatus onFailedRequest(FailureCause failure) {
-        ROS_INFO("SearchBin Action request failed: %d", static_cast<int>(failure));
+        ROS_INFO("SearchRotateCamera Action request failed: %d", static_cast<int>(failure));
         return NodeStatus::FAILURE;
     }
 
@@ -75,7 +80,7 @@ public:
         action_client_->cancelGoal();
         }
         setStatus(NodeStatus::IDLE);
-        ROS_INFO("SearchBin Action halted");
+        ROS_INFO("SearchRotateCamera Action halted");
     }
 
 };

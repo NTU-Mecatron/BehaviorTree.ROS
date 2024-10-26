@@ -1,6 +1,0 @@
-<launch>
-	<node pkg="behaviortree_ros" type="bt_task2" name="bt_task2" output="screen">
-        <param name="xml_file" value="$(find behaviortree_ros)/xml/bt_task2.xml" />
-        <param name="log_file" value="$(find behaviortree_ros)/btlog/bt_task2.btlog" />
-    </node>
-</launch>

@@ -2,15 +2,9 @@
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
 
-#include "call_camera_Xangle.h"
 #include "on_yolo_client.h"
 #include "center_client.h"
-#include "print_value.h"
-#include "search_rotate_camera.h"
-// #include "search.h"
-// #include "move_arm.h"
-#include "call_gripper_client.h"
-
+#include "move_with_duration.h"
 // headers for signal handling
 #include <unistd.h>
 #include <stdio.h>
@@ -30,15 +24,11 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
-    factory.registerNodeType<PrintValue>("PrintValue");
+    // factory.registerNodeType<PrintValue>("PrintValue");
 
+    // factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
-    RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
-    RegisterRosAction<SearchRotateCameraClient>(factory, "SearchBin", nh);
-    RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<CenterClient>(factory, "MoveDown", nh);
-    RegisterRosAction<CenterClient>(factory, "MoveUp", nh);
-    RegisterRosService<GripperClient>(factory, "Gripper", nh);
+    RegisterRosAction<MoveWithDurationClient>(factory, "MoveWithDuration", nh);
 
      
     std::string xml_file;
