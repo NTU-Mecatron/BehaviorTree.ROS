@@ -4,7 +4,7 @@
 #include <../src/search_rotate.h>
 #include <../src/search_rotate_camera.h>
 #include <../src/call_camera_Xangle.h>
-#include <move_arm.h>
+// #include <move_arm.h>
 
 #include <ros/ros.h>
 #include <behaviortree_cpp/xml_parsing.h>
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 
     // ----------------- Register your custom nodes ----------------------
     // You need to edit this section to include your custom nodes
-    factory.registerNodeType<PrintValue>("PrintValue");
+    // factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
     RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
     RegisterRosAction<SearchRotateCameraClient>(factory, "SearchBin", nh);
