@@ -32,3 +32,11 @@ To skip to running the example, go to [Tutorial 4](docs/tutorial4.md#running-the
 
 ## How to change your current nodes for Task into a service server
 Refer to this https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/python_service.py
+
+## How to create a condition node that communicates with rostopic
+ROS condition node wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/include/behaviortree_ros/bt_condition_node.h
+
+Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/condition_nodes.h
+
+[Screencast from 02-09-24 23:01:26.webm](https://github.com/user-attachments/assets/96a6ad92-5b24-453c-bfec-ff504ef33087)
+
