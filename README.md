@@ -47,12 +47,14 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     Open simulation and launch `ros_tcp_endpoint` as usual.
 
     If you have not clone yolo_object_detection and common_action_service_servers, paste these command lines on terminal:
-        ```
+
+        ```bash
         git clone https://github.com/NTU-Mecatron/yolo_object_detection.git
         git clone https://github.com/NTU-Mecatron/common_action_service_servers.git
         ```
 
     After cloning, remember to switch to branch `bao` in both packages:
+
         ```bash
         cd yolo_object_detection
         git checkout bao
@@ -62,6 +64,7 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
         ```
 
     Then, build the workspace and launch the packages (remember to run roscore):
+
         ```bash
         catkin_make
         // On the first terminal
@@ -73,7 +76,8 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
         ```
         
     After running, we expect that the yolo model does not run because I set that it only starts when we call to it via a service server. There are two ways to start the yolo model, first is to run the BT with the node OnYolo (will show later), and second is to run this command line on another terminal (just do for debugging):
-    ```
+
+    ```bash
     source devel/setup.bash
     rosservice call /on_yolo "turn_on: true"
     ```
@@ -81,7 +85,8 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
 2. Run essential UI software: Rviz and Groot2
 
     Start Rviz and read the frame from yolo_object_detecion as usual:
-    ```
+
+    ```bash
     rviz
     ```
 
@@ -92,13 +97,15 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     Ensure you started the simulation and ros_tcp_endpoint, as well as other essential packages in step 1. 
 
     To clone the BT packages, please clone and switch to branch `bao`:
-    ```
+
+    ```bash
     git clone https://github.com/NTU-Mecatron/BehaviorTree.ROS.git
     git checkout bao
     ```
 
     Launch the packages:
-    ```
+
+    ```bash
     source devel/setup.bash
     roslaunch behaviortree_ros nav_through_gate.launch
     ```
