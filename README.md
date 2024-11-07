@@ -67,9 +67,11 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
 
     ```bash
     catkin_make
+
     // On the first terminal
     source devel/setup.bash
     roslaunch yolo_object_detection launch.launch
+
     // On the second terminal
     source devel/setup.bash
     roslaunch common_action_service_servers launch_action.launch 
@@ -82,6 +84,7 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     rosservice call /on_yolo "turn_on: true"
     ```
 
+
 2. Run essential UI software: Rviz and Groot2
 
     Start Rviz and read the frame from yolo_object_detecion as usual:
@@ -91,6 +94,7 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     ```
 
     Then open the Groot2, press "Connect". Nothing happens now since we have not launched the packages.
+
 
 3. Setup and Launch the BT
 
