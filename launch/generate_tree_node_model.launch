@@ -1,5 +1,5 @@
 <launch>
 	<node pkg="behaviortree_ros" type="generate_tree_node_model" name="generate_tree_node_model" output="screen">
-        <param name="tree_node_model_xmlfile_path" value="$(find behaviortree_ros)/xml/test_action.xml" />
+        <param name="tree_node_model_xmlfile_path" value="$(find behaviortree_ros)/xml/nav_though_gate.xml" />
     </node>
 </launch>

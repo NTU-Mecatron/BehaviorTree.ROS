@@ -1,9 +1,6 @@
 #include "../src/on_yolo_client.h"
-#include "../src/move_with_duration.h"
-#include <../src/center_client.h>
-#include <../src/search_rotate.h>
-#include <../src/search_rotate_camera.h>
-#include <../src/call_camera_Xangle.h>
+#include "../src/move_with_duration_client.h"
+#include "../src/center_client.h"
 // #include <move_arm.h>
 
 #include <ros/ros.h>
@@ -25,10 +22,8 @@ int main(int argc, char **argv)
     // You need to edit this section to include your custom nodes
     // factory.registerNodeType<PrintValue>("PrintValue");
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
-    RegisterRosService<CameraXAngleClient>(factory, "CameraXAngle", nh);
-    RegisterRosAction<SearchRotateCameraClient>(factory, "SearchBin", nh);
-    RegisterRosAction<SearchRotateClient>(factory, "SearchBin", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
+    RegisterRosAction<MoveWithDurationClient>(factory, "BlindMovement", nh);
     
     // End of section
 

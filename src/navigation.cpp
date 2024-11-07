@@ -4,7 +4,7 @@
 
 #include "on_yolo_client.h"
 #include "center_client.h"
-#include "search_rotate.h"
+// #include "search_rotate.h"
 #include "print_value.h"
 // headers for signal handling
 #include <unistd.h>
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 
     RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<SearchRotateClient>(factory, "RotateSearch", nh);
+    // RegisterRosAction<SearchRotateClient>(factory, "RotateSearch", nh);
 
      
     std::string xml_file;
