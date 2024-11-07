@@ -49,7 +49,6 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     If you have not clone yolo_object_detection and common_action_service_servers, paste these command lines on terminal:
         ```
         git clone https://github.com/NTU-Mecatron/yolo_object_detection.git
-
         git clone https://github.com/NTU-Mecatron/common_action_service_servers.git
         ```
 
@@ -65,11 +64,9 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
     Then, build the workspace and launch the packages (remember to run roscore):
         ```bash
         catkin_make
-        
         // On the first terminal
         source devel/setup.bash
         roslaunch yolo_object_detection launch.launch
-
         // On the second terminal
         source devel/setup.bash
         roslaunch common_action_service_servers launch_action.launch 
