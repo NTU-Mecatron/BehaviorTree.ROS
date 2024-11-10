@@ -1,13 +1,13 @@
 #include <behaviortree_ros/bt_action_node.h>
-#include <common_action_service_servers/MoveWithDurationAction.h>
+#include <common_action_service_servers/BlindMovementAction.h>
 
 using namespace BT;
 
-class MoveWithDurationClient: public RosActionNode<common_action_service_servers::MoveWithDurationAction>
+class BlindMovementClient: public RosActionNode<common_action_service_servers::BlindMovementAction>
 {
 public:
-    MoveWithDurationClient( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
-		RosActionNode<common_action_service_servers::MoveWithDurationAction>(handle, name, conf) {}
+    BlindMovementClient( ros::NodeHandle& handle, const std::string& name, const NodeConfig & conf):
+		RosActionNode<common_action_service_servers::BlindMovementAction>(handle, name, conf) {}
 
     static PortsList providedPorts()
     {
@@ -38,22 +38,22 @@ public:
         if (!getInput<float>("duration", goal.duration)) {
             throw BT::RuntimeError("Missing required input [duration]");
         }
-		ROS_INFO("Sending MoveWithDuration Action request");
+		ROS_INFO("Sending BlindMovement Action request");
 		return true;
 	}
 
     NodeStatus onResult( const ResultType& res) override {
         if (res.success) {
-            ROS_INFO("MoveWithDuration Action returned SUCCESS");
+            ROS_INFO("BlindMovement Action returned SUCCESS");
             return NodeStatus::SUCCESS;
         } else {
-            ROS_INFO("MoveWithDuration Action returned FAILURE");
+            ROS_INFO("BlindMovement Action returned FAILURE");
 			return NodeStatus::FAILURE;
         }
 	}
 
     NodeStatus onFailedRequest(FailureCause failure) {
-        ROS_INFO("MoveWithDuration Action request failed: %d", static_cast<int>(failure));
+        ROS_INFO("BlindMovement Action request failed: %d", static_cast<int>(failure));
         return NodeStatus::FAILURE;
     }
 
@@ -63,7 +63,7 @@ public:
         action_client_->cancelGoal();
         }
         setStatus(NodeStatus::IDLE);
-        ROS_INFO("MoveWithDuration Action halted");
+        ROS_INFO("BlindMovement Action halted");
     }
 
 };

@@ -2,10 +2,11 @@
 <root BTCPP_format="4">
   <BehaviorTree ID="nav">
     <Sequence>
-      <OnYolo timeout="10000"
-              service_name="on_yolo"/>
-      <Center server_name="center"
-              timeout="500000"
+      <Yolo timeout="5000"
+              server_name="yolo_object_detection/activate_yolo_action"
+              turn_on_or_off="true"/>
+      <Center timeout="500000"
+              server_name="center"
               filename="/home/buigiabao2004/catkin_ws/src/common_action_service_servers/cfg/center.yaml"
               target_object_id="2"
               mode="0"
@@ -13,15 +14,15 @@
               xyz_margin="0.2, 0.2, 0.2"
               duration="2"
               avoid_object_id="3"
-              left_border="0.25"
-              right_border="0.75"
-              safety_limit="0.02"/>
-      <BlindMovement server_name="blind_movement"
-                     timeout="500000"
+              safety_limit="0.25"
+              left_border="0.75"
+              right_border="0.02"/>
+      <BlindMovement timeout="500000"
+                     server_name="blind_movement"
+                     yaw="0"
                      x="0.4"
                      y="0"
                      z="0"
-                     yaw="0"
                      duration="5"/>
     </Sequence>
   </BehaviorTree>
@@ -29,28 +30,28 @@
   <!-- Description of Node Models (used by Groot) -->
   <TreeNodesModel>
     <Action ID="BlindMovement">
-      <input_port name="server_name"
-                  type="std::string">name of the Action Server</input_port>
       <input_port name="timeout"
                   default="500"
                   type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="yaw"
+                  type="float"/>
       <input_port name="x"
                   type="float"/>
       <input_port name="y"
                   type="float"/>
       <input_port name="z"
                   type="float"/>
-      <input_port name="yaw"
-                  type="float"/>
       <input_port name="duration"
                   type="float"/>
     </Action>
     <Action ID="Center">
-      <input_port name="server_name"
-                  type="std::string">name of the Action Server</input_port>
       <input_port name="timeout"
                   default="500"
                   type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
       <input_port name="filename"
                   type="std::string"/>
       <input_port name="target_object_id"
@@ -65,19 +66,21 @@
                   type="float"/>
       <input_port name="avoid_object_id"
                   type="int"/>
+      <input_port name="safety_limit"
+                  type="float"/>
       <input_port name="left_border"
                   type="float"/>
       <input_port name="right_border"
                   type="float"/>
-      <input_port name="safety_limit"
-                  type="float"/>
     </Action>
-    <Action ID="OnYolo">
+    <Action ID="Yolo">
       <input_port name="timeout"
-                  default="100"
-                  type="unsigned int">timeout to connect to server (milliseconds)</input_port>
-      <input_port name="service_name"
-                  type="std::string">name of the ROS service</input_port>
+                  default="500"
+                  type="unsigned int">timeout to connect (milliseconds)</input_port>
+      <input_port name="server_name"
+                  type="std::string">name of the Action Server</input_port>
+      <input_port name="turn_on_or_off"
+                  type="bool"/>
     </Action>
   </TreeNodesModel>
 

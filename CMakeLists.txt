@@ -16,6 +16,7 @@ set(ROS_DEPENDENCIES
     yolo_object_detection
     common_msg_srv
     common_action_service_servers
+    pixhawk
     )
 
 find_package(catkin REQUIRED COMPONENTS ${ROS_DEPENDENCIES} )
@@ -69,18 +70,6 @@ include_directories( include ${catkin_INCLUDE_DIRS})
 add_executable(generate_tree_node_model scripts/generate_tree_node_model.cpp)
 add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
-
-add_executable(bt_task2 src/bt_task2.cpp)
-add_dependencies(bt_task2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(bt_task2 ${catkin_LIBRARIES} )
-
-add_executable(obj_depo src/obj_depo.cpp)
-add_dependencies(obj_depo ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(obj_depo ${catkin_LIBRARIES} )
-
-add_executable(navigation src/navigation.cpp)
-add_dependencies(navigation ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(navigation ${catkin_LIBRARIES} )
 
 add_executable(test_action src/test_action.cpp)
 add_dependencies(test_action ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})

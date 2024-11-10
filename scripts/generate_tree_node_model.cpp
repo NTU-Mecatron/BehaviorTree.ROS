@@ -1,8 +1,6 @@
-#include "../src/on_yolo_client.h"
-#include "../src/move_with_duration_client.h"
-#include "../src/center_client.h"
-// #include <move_arm.h>
-
+#include "../src/action_yolo.h"
+#include "../src/action_center.h"
+#include "../src/action_blind_movement.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/xml_parsing.h>
 using namespace BT;
@@ -21,9 +19,9 @@ int main(int argc, char **argv)
     // ----------------- Register your custom nodes ----------------------
     // You need to edit this section to include your custom nodes
     // factory.registerNodeType<PrintValue>("PrintValue");
-    RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
+    RegisterRosAction<YoloClient>(factory, "OnYolo", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<MoveWithDurationClient>(factory, "BlindMovement", nh);
+    RegisterRosAction<BlindMovementClient>(factory, "BlindMovement", nh);
     
     // End of section
 

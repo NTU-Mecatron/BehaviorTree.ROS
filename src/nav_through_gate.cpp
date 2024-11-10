@@ -2,9 +2,9 @@
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
 
-#include "on_yolo_client.h"
-#include "center_client.h"
-#include "move_with_duration_client.h"
+#include "action_center.h"
+#include "action_blind_movement.h"
+#include "action_yolo.h"
 
 // headers for signal handling
 #include <unistd.h>
@@ -25,9 +25,9 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
-    RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
+    RegisterRosAction<YoloClient>(factory, "Yolo", nh);
     RegisterRosAction<CenterClient>(factory, "Center", nh);
-    RegisterRosAction<MoveWithDurationClient>(factory, "BlindMovement", nh);
+    RegisterRosAction<BlindMovementClient>(factory, "BlindMovement", nh);
 
      
     std::string xml_file;

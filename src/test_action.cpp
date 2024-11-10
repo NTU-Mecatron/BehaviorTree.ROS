@@ -2,8 +2,8 @@
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
 
-#include "on_yolo_client.h"
-#include "center_client.h"
+// #include "on_yolo_client.h"
+// #include "center_client.h"
 // headers for signal handling
 #include <unistd.h>
 #include <stdio.h>
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     // factory.registerNodeType<PrintValue>("PrintValue");
 
     // factory.registerNodeType<PrintValue>("PrintValue");
-    RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
+    // RegisterRosService<OnYoloClient>(factory, "OnYolo", nh);
 
      
     std::string xml_file;
