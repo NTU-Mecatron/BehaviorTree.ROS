@@ -118,7 +118,7 @@ template <class DerivedT> static
                      const std::string& registration_ID,
                      ros::NodeHandle& node_handle)
 {
-  NodeBuilder builder = [&node_handle](const std::string& name, const NodeConfiguration& config) {
+  NodeBuilder builder = [&node_handle](const std::string& name, const NodeConfig& config) {
     return std::make_unique<DerivedT>(node_handle, name, config );
   };
 

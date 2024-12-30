@@ -7,7 +7,7 @@
 
 ### Code template
 
-For a complete example, refer to the file [fibonacci_client.h](../include/behaviortree_ros/fibonacci_client.h) in the `include` directory.
+For a complete example, refer to the file [fibonacci_client.h](../examples/fibonacci_client.h) in the `examples` directory.
 
 ```cpp
 #ifndef YOUR_ACTION_CLIENT_H

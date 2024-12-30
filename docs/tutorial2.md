@@ -8,7 +8,7 @@
 
 ### Code template
 
-For a complete example, refer to the file [add_two_ints_client.h](../include/behaviortree_ros/add_two_ints_client.h) in the `include` directory.
+For a complete example, refer to the file [add_two_ints_client.h](../examples/add_two_ints_client.h) in the `examples` directory.
 
 ```cpp
 #ifndef YOUR_CLASS_NAME_H

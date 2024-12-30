@@ -2,8 +2,8 @@
 <root BTCPP_format="4">
   <BehaviorTree ID="main_tree">
     <Sequence>
-      <Action ID="RobotArmPos"/>
-      <Condition ID="ObjDetectedStatus"/>
+      <CheckBool queue_size="1"
+                  topic_name="/test_bool_receive"/>
       <AddTwoInts service_name="add_two_ints"
                   timeout="100"
                   first_int="3"
@@ -12,6 +12,8 @@
       <Delay delay_msec="1000">
         <PrintValue message="{add_two_result}"/>
       </Delay>
+      <SendBool queue_size="1"
+                topic_name="/test_bool_send"/>
       <Fibonacci order="5"
                  server_name="fibonacci"
                  timeout="500"
@@ -51,6 +53,20 @@
     <Action ID="PrintValue">
       <input_port name="message"
                   type="int"/>
+    </Action>
+    <Condition ID="CheckBool">
+      <input_port name="queue_size"
+                  default="1"
+                  type="unsigned int">queue size</input_port>
+      <input_port name="topic_name"
+                  type="std::string">name of the ROS topic</input_port>
+    </Condition>
+    <Action ID="SendBool">
+      <input_port name="queue_size"
+                  default="1"
+                  type="unsigned int">queue size</input_port>
+      <input_port name="topic_name"
+                  type="std::string">name of the ROS topic</input_port>
     </Action>
   </TreeNodesModel>
 

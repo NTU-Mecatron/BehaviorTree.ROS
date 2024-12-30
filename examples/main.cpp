@@ -1,11 +1,11 @@
 #include "add_two_ints_client.h"
 #include "fibonacci_client.h"
-#include "condition_nodes.h"
+#include "check_bool.h"
+#include "send_bool.h"
 #include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
-#include "publisher_node.h"
 
 using namespace BT;
 
@@ -26,9 +26,9 @@ int main(int argc, char **argv)
 
     BehaviorTreeFactory factory;
 
-    factory.registerNodeType <ROSPublisherNode>("RobotArmPos");
-    factory.registerNodeType <ROSObjDetectedStatus>("ObjDetectedStatus");
     factory.registerNodeType<PrintValue>("PrintValue");
+    RegisterRosSubscriber<CheckBool>(factory, "CheckBool", nh);
+    RegisterRosPublisher<SendBool>(factory, "SendBool", nh);
     RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
     RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
     
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     {
         ros::spinOnce();
         status = tree.tickOnce();
-        tree.sleep(std::chrono::milliseconds(100));
+        tree.sleep(std::chrono::milliseconds(20));
     }
     std::cout << status << std::endl;
     return 0;

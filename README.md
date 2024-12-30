@@ -12,6 +12,12 @@ Currently, two wrappers are provided:
 - [RosActionNode](include/behaviortree_ros/bt_action_node.h) that, similarly, is a wrapper around
   [actionlib::SimpleActionClient](http://wiki.ros.org/actionlib).
 
+Most recently, two new wrappers have been added:
+
+- [RosSubscriberNode](include/behaviortree_ros/bt_subscriber_node.h) that can be used to subscribe to a ROS topic and check whether the data satisfies a condition.
+
+- [RosPublisherNode](include/behaviortree_ros/bt_publisher_node.h) that can be used to publish to a ROS topic.
+
 This package also provides an example of how to implement BT in ROS. Specifically:
 
 - `src/main.cpp` is an example of how to create a simple BT that calls a ROS Service and a ROS Action, and connect it to Groot2.
@@ -27,6 +33,8 @@ This package also provides an example of how to implement BT in ROS. Specificall
 - [**Tutorial 3: Writing a simple BT node that calls a ROS Action**](docs/tutorial3.md)
 
 - [**Tutorial 4: Writing BT, visualisation and logging**](docs/tutorial4.md)
+
+- [**Tutorial 5: Writing a BT node that subscribes/publishes to a ROS topic**](docs/tutorial5.md)
 
 To skip to running the example, go to [Tutorial 4](docs/tutorial4.md#running-the-entire-example).
 

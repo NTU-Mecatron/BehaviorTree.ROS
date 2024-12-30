@@ -15,17 +15,15 @@ using namespace BT;
 
 
 // Specialized node that checks if an object is detected
-class ROSObjDetectedStatus : public ROSConditionNode<std_msgs::Bool>
+class CheckBool : public RosSubscriberNode<std_msgs::Bool>
 {
 public:
-    ROSObjDetectedStatus(const string& name, const NodeConfiguration& config) :
-    ROSConditionNode(name, config, "/CONDITION_obj_detection_status")
-    {}
+    CheckBool(ros::NodeHandle& nh, const string& name, const NodeConfig& config) :
+        RosSubscriberNode(nh, name, config) {};
 
-protected:
-    virtual bool checkCondition() const override
+    bool onMessageReceived(const std_msgs::Bool::ConstPtr& msg) override
     {
-        return _msg.data;
+        return msg->data;
     }
 };
 

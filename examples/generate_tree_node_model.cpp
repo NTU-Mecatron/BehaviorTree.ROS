@@ -1,6 +1,7 @@
-#include "../src/add_two_ints_client.h"
-#include "../src/fibonacci_client.h"
-#include "../src/print_value.h"
+#include "add_two_ints_client.h"
+#include "fibonacci_client.h"
+#include "print_value.h"
+#include "check_bool.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/xml_parsing.h>
 using namespace BT;
@@ -19,6 +20,7 @@ int main(int argc, char **argv)
     // ----------------- Register your custom nodes ----------------------
     // You need to edit this section to include your custom nodes
     factory.registerNodeType<PrintValue>("PrintValue");
+    RegisterRosSubscriber<CheckBool>(factory, "CheckBool", nh);
     RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
     RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
     // End of section
