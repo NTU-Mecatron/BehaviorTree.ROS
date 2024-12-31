@@ -77,7 +77,7 @@ protected:
     {
       return NodeStatus::RUNNING;
     }
-    
+    message_received_ = false;  // reset the flag when there are no new messages
     return onMessageReceived(msg_) ? NodeStatus::SUCCESS : NodeStatus::FAILURE;
   }
 };
