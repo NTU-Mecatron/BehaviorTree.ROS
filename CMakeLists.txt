@@ -62,17 +62,17 @@ include_directories( include ${catkin_INCLUDE_DIRS})
 ######################################################
 # EXAMPLES
 
-add_executable(example_bt examples/main.cpp)
-add_dependencies(example_bt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(example_bt ${catkin_LIBRARIES} )
+# add_executable(example_bt examples/main.cpp)
+# add_dependencies(example_bt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(example_bt ${catkin_LIBRARIES} )
 
-add_executable(example_server examples/server.cpp)
-add_dependencies(example_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(example_server ${catkin_LIBRARIES} )
+# add_executable(example_server examples/server.cpp)
+# add_dependencies(example_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(example_server ${catkin_LIBRARIES} )
 
-add_executable(generate_tree_node_model examples/generate_tree_node_model.cpp)
-add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
+# add_executable(generate_tree_node_model examples/generate_tree_node_model.cpp)
+# add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
 ######################################################
 # INSTALL
 
