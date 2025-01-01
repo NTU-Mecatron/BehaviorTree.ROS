@@ -1,9 +1,12 @@
 #include "add_two_ints_client.h"
 #include "fibonacci_client.h"
+#include "check_bool.h"
+#include "send_bool.h"
 #include "print_value.h"
 #include <ros/ros.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/loggers/bt_file_logger_v2.h>
+
 using namespace BT;
 
 // headers for signal handling
@@ -13,7 +16,7 @@ using namespace BT;
 
 volatile sig_atomic_t stop;
 void inthand(int signum) {
-    stop = 1;
+    stop = 0;
 }
 
 int main(int argc, char **argv) 
@@ -24,9 +27,11 @@ int main(int argc, char **argv)
     BehaviorTreeFactory factory;
 
     factory.registerNodeType<PrintValue>("PrintValue");
+    RegisterRosSubscriber<CheckBool>(factory, "CheckBool", nh);
+    RegisterRosPublisher<SendBool>(factory, "SendBool", nh);
     RegisterRosService<AddTwoIntsClient>(factory, "AddTwoInts", nh);
     RegisterRosAction<FibonacciClient>(factory, "Fibonacci", nh);
-
+    
     std::string xml_file;
     ros::param::get("~xml_file", xml_file);
     auto tree = factory.createTreeFromFile(xml_file);
@@ -44,10 +49,12 @@ int main(int argc, char **argv)
     signal(SIGINT, inthand);
 
     while( !stop && ros::ok() && (status == NodeStatus::RUNNING))
+    // while( ros::ok())
+
     {
         ros::spinOnce();
         status = tree.tickOnce();
-        tree.sleep(std::chrono::milliseconds(100));
+        tree.sleep(std::chrono::milliseconds(20));
     }
     std::cout << status << std::endl;
     return 0;

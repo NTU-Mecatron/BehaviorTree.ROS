@@ -3,14 +3,14 @@
 #include <behaviortree_ros/AddTwoInts.h>
 #include <behaviortree_ros/FibonacciAction.h>
 
-bool Add(behaviortree_ros::AddTwoInts::Request  &req,
-         behaviortree_ros::AddTwoInts::Response &res)
-{
-  res.sum = req.a + req.b;
-  ROS_INFO("request: x=%d, y=%d", req.a, req.b);
-  ROS_INFO("sending back response: [%d]", res.sum);
-  return true;
-}
+// bool Add(behaviortree_ros::AddTwoInts::Request  &req,
+//          behaviortree_ros::AddTwoInts::Response &res)
+// {
+//   res.sum = req.a + req.b;
+//   ROS_INFO("request: x=%d, y=%d", req.a, req.b);
+//   ROS_INFO("sending back response: [%d]", res.sum);
+//   return true;
+// }
 
 
 // Code inspeired by
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "add_two_ints_server");
   ros::NodeHandle n;
 
-  ros::ServiceServer service = n.advertiseService("add_two_ints", Add);
+  // ros::ServiceServer service = n.advertiseService("add_two_ints", Add);
   FibonacciServer fibonacci("fibonacci");
 
   ROS_INFO("Ready to add two ints service and fibonacci action.");

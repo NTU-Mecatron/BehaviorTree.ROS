@@ -12,6 +12,12 @@ Currently, two wrappers are provided:
 - [RosActionNode](include/behaviortree_ros/bt_action_node.h) that, similarly, is a wrapper around
   [actionlib::SimpleActionClient](http://wiki.ros.org/actionlib).
 
+Most recently, two new wrappers have been added:
+
+- [RosSubscriberNode](include/behaviortree_ros/bt_subscriber_node.h) that can be used to subscribe to a ROS topic and check whether the data satisfies a condition.
+
+- [RosPublisherNode](include/behaviortree_ros/bt_publisher_node.h) that can be used to publish to a ROS topic.
+
 This package also provides an example of how to implement BT in ROS. Specifically:
 
 - `src/main.cpp` is an example of how to create a simple BT that calls a ROS Service and a ROS Action, and connect it to Groot2.
@@ -28,4 +34,17 @@ This package also provides an example of how to implement BT in ROS. Specificall
 
 - [**Tutorial 4: Writing BT, visualisation and logging**](docs/tutorial4.md)
 
+- [**Tutorial 5: Writing a BT node that subscribes/publishes to a ROS topic**](docs/tutorial5.md)
+
 To skip to running the example, go to [Tutorial 4](docs/tutorial4.md#running-the-entire-example).
+
+## How to change your current nodes for Task into a service server
+Refer to this https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/python_service.py
+
+## How to create a condition node that communicates with rostopic
+ROS condition node wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/include/behaviortree_ros/bt_condition_node.h
+
+Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/BT-JH/src/condition_nodes.h
+
+[Screencast from 02-09-24 23:01:26.webm](https://github.com/user-attachments/assets/96a6ad92-5b24-453c-bfec-ff504ef33087)
+

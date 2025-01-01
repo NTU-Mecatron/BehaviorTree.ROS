@@ -13,6 +13,13 @@
             <input_port name="timeout" type="unsigned int" default="500">timeout to connect (milliseconds)</input_port>
             <output_port name="result" type="int"/>
         </Action>
+        <Condition ID="CheckBool">
+            <input_port name="queue_size" type="unsigned int" default="1">queue size</input_port>
+            <input_port name="topic_name" type="std::string">name of the ROS topic</input_port>
+        </Condition>
+        <Action ID="SendBool">
+            <input_port name="queue_size" type="unsigned int" default="1">queue size</input_port>
+            <input_port name="topic_name" type="std::string">name of the ROS topic</input_port>
         <Action ID="PrintValue">
             <input_port name="message" type="int"/>
         </Action>
