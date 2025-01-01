@@ -101,7 +101,7 @@ public:
     {
       action_client_->cancelGoal();
     }
-    setStatus(NodeStatus::IDLE);
+    resetStatus();
   }
 
 protected:
