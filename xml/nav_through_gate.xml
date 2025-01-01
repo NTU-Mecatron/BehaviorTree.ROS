@@ -3,8 +3,8 @@
   <BehaviorTree ID="nav">
     <Sequence>
       <Yolo timeout="5000"
-              server_name="yolo_object_detection/activate_yolo_action"
-              turn_on_or_off="true"/>
+            server_name="yolo_node_1/activate_yolo_action"
+            turn_on_or_off="true"/>
       <Center timeout="500000"
               server_name="center"
               filename="/home/buigiabao2004/catkin_ws/src/common_action_service_servers/cfg/center.yaml"
@@ -14,9 +14,9 @@
               xyz_margin="0.2, 0.2, 0.2"
               duration="2"
               avoid_object_id="3"
-              safety_limit="0.25"
+              safety_limit="0.02"
               left_border="0.75"
-              right_border="0.02"/>
+              right_border="0.25"/>
       <BlindMovement timeout="500000"
                      server_name="blind_movement"
                      yaw="0"

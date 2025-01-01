@@ -48,7 +48,7 @@ public:
         {
             action_client_->cancelGoal();
         }
-        setStatus(NodeStatus::IDLE);
+        resetStatus(); 
         ROS_INFO("Yolo Action halted");
     }
 
