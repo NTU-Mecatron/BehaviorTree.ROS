@@ -63,21 +63,14 @@ protected:
   ros::Subscriber subscriber_;
   ros::NodeHandle& node_;
   typename MessageT::ConstPtr msg_;
-  bool message_received_ = false;
 
   void callback(const typename MessageT::ConstPtr& msg)
   {
     msg_ = msg;
-    message_received_ = true;
   }
 
   NodeStatus tick() override
   {
-    if( !message_received_ )
-    {
-      return NodeStatus::RUNNING;
-    }
-    message_received_ = false;  // reset the flag when there are no new messages
     return onMessageReceived(msg_) ? NodeStatus::SUCCESS : NodeStatus::FAILURE;
   }
 };
