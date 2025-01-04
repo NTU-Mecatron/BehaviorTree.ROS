@@ -36,7 +36,6 @@ protected:
     const string topic = getInput<string>("topic_name").value();
     const unsigned queue_size = getInput<unsigned>("queue_size").value();
     subscriber_ = node_.subscribe( topic, queue_size, &BaseClass::callback, this );
-    non_success_status_ = getInput<NodeStatus>("non_success_status").value();
   }
 
 public:
@@ -55,16 +54,25 @@ public:
     return  {
       InputPort<string>("topic_name", "Name of the ROS topic"),
       InputPort<unsigned>("queue_size", 1, "Queue size"),
-      InputPort<NodeStatus>("non_success_status", NodeStatus::FAILURE, "The returned status when not SUCCESS. Must be FAILURE or RUNNING")
       };
   }
 
   /// User must implement this method.
-  virtual bool onMessageReceived(const typename MessageT::ConstPtr& msg) = 0;
+  virtual NodeStatus onMessageReceived(const typename MessageT::ConstPtr& msg) = 0;
 
   virtual void halt() override
   {
     resetStatus();
+  }
+
+  bool isNewMsgReceived() const
+  {
+    return is_new_msg_received_;
+  }
+
+  void resetMsgReceivedStatus()
+  {
+    is_new_msg_received_ = false;
   }
 
 protected:
@@ -72,20 +80,21 @@ protected:
   ros::Subscriber subscriber_;
   ros::NodeHandle& node_;
   typename MessageT::ConstPtr msg_;
-  NodeStatus non_success_status_;
+  bool is_new_msg_received_ = false;
 
   void callback(const typename MessageT::ConstPtr& msg)
   {
     msg_ = msg;
+    is_new_msg_received_ = true;
   }
 
   NodeStatus tick() override
   {
     if( !msg_ )
     {
-      return non_success_status_;
+      return NodeStatus::RUNNING;
     }
-    return onMessageReceived(msg_) ? NodeStatus::SUCCESS : non_success_status_;
+    return onMessageReceived(msg_);
   }
 };
 
