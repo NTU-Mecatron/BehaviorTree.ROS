@@ -69,7 +69,6 @@ protected:
     MessageT msg_;
     if( setMessage(msg_) )
     {
-      std::cout << msg_ << std::endl;
       publisher_.publish(msg_);
       return NodeStatus::SUCCESS;
     }

@@ -71,6 +71,10 @@ protected:
 
   NodeStatus tick() override
   {
+    if( !msg_ )
+    {
+      return NodeStatus::FAILURE;
+    }
     return onMessageReceived(msg_) ? NodeStatus::SUCCESS : NodeStatus::FAILURE;
   }
 };
