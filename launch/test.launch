@@ -1,0 +1,6 @@
+<launch>
+	<node pkg="behaviortree_ros" type="test_action" name="test_action" output="screen">
+        <param name="xml_file" value="$(find behaviortree_ros)/xml/test_action.xml" />
+        <param name="log_file" value="$(find behaviortree_ros)/btlog/test_action.btlog" />
+    </node>
+</launch>

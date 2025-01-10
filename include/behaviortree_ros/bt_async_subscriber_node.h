@@ -35,7 +35,7 @@ protected:
   { 
     const string topic = getInput<string>("topic_name").value();
     const unsigned queue_size = getInput<unsigned>("queue_size").value();
-    min_fail_duration_ = 5.0;
+    min_fail_duration_ = getInput<unsigned>("min_fail_duration").value();
     subscriber_ = node_.subscribe( topic, queue_size, &BaseClass::callback, this );
   }
 

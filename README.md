@@ -48,3 +48,79 @@ Example usage of wrapper: https://github.com/NTU-Mecatron/BehaviorTree.ROS/blob/
 
 [Screencast from 02-09-24 23:01:26.webm](https://github.com/user-attachments/assets/96a6ad92-5b24-453c-bfec-ff504ef33087)
 
+## How to launch BT for navigating through the gate
+
+1. (Setup) Run essential packages: ros_tcp_endpoint, yolo_object_detection and common_action_service_servers
+
+    Open simulation and launch `ros_tcp_endpoint` as usual.
+
+    If you have not cloned yolo_object_detection and common_action_service_servers, paste these command lines on terminal:
+
+    ```bash
+    git clone https://github.com/NTU-Mecatron/yolo_object_detection.git
+    git clone https://github.com/NTU-Mecatron/common_action_service_servers.git
+    ```
+
+    After cloning, remember to switch to branch `bao` in both packages:
+
+    ```bash
+    cd yolo_object_detection
+    git checkout bao
+    cd ../common_action_service_servers
+    git checkout bao
+    cd ..
+    ```
+
+    Then, build the workspace and launch the packages (remember to run roscore):
+
+    ```bash
+    catkin_make
+
+    // On the first terminal
+    source devel/setup.bash
+    roslaunch yolo_object_detection launch.launch
+
+    // On the second terminal
+    source devel/setup.bash
+    roslaunch common_action_service_servers launch_action.launch 
+    ```
+        
+    After running, we expect that the yolo model does not run because I set that it only starts when we call to it via a service server. There are two ways to start the yolo model, first is to run the BT with the node OnYolo (will show later), and second is to run this command line on another terminal (just do for debugging):
+
+    ```bash
+    source devel/setup.bash
+    rosservice call /on_yolo "turn_on: true"
+    ```
+
+
+2. Run essential UI software: Rviz and Groot2
+
+    Start Rviz and read the frame from yolo_object_detecion as usual:
+
+    ```bash
+    rviz
+    ```
+
+    Then open the Groot2, press "Connect". Nothing happens now since we have not launched the packages.
+
+
+3. Setup and Launch the BT
+
+    Ensure you started the simulation and ros_tcp_endpoint, as well as other essential packages in step 1. 
+
+    To clone the BT packages, please clone and switch to branch `bao`:
+
+    ```bash
+    git clone https://github.com/NTU-Mecatron/BehaviorTree.ROS.git
+    git checkout bao
+    ```
+
+    Launch the packages:
+
+    ```bash
+    source devel/setup.bash
+    roslaunch behaviortree_ros nav_through_gate.launch
+    ```
+
+    Check the Rviz and Groot2 now. Enjoy!
+    
