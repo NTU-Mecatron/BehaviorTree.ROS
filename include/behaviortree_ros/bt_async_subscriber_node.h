@@ -35,6 +35,7 @@ protected:
   { 
     const string topic = getInput<string>("topic_name").value();
     const unsigned queue_size = getInput<unsigned>("queue_size").value();
+    min_fail_duration_ = 5.0;
     subscriber_ = node_.subscribe( topic, queue_size, &BaseClass::callback, this );
   }
 
@@ -54,6 +55,8 @@ public:
     return  {
       InputPort<string>("topic_name", "Name of the ROS topic"),
       InputPort<unsigned>("queue_size", 1, "Queue size"),
+      InputPort<float>("min_fail_duration", 1.0, "Minimum duration to consider the condition fail"),
+      InputPort<string>("log_msg_fail", "The message to ROS_INFO when the condition is fail")
       };
   }
 
@@ -80,7 +83,10 @@ protected:
   ros::Subscriber subscriber_;
   ros::NodeHandle& node_;
   typename MessageT::ConstPtr msg_;
+  float min_fail_duration_;
+  ros::Time last_fail_time_ = ros::Time(0);
   bool is_new_msg_received_ = false;
+  NodeStatus status_ = NodeStatus::RUNNING;
 
   void callback(const typename MessageT::ConstPtr& msg)
   {
@@ -90,10 +96,27 @@ protected:
 
   NodeStatus tick() override
   {
+    auto now = ros::Time::now();
     if( !msg_ )
     {
-      return NodeStatus::RUNNING;
+      if (last_fail_time_ == ros::Time(0)) 
+      {
+        last_fail_time_ = now;
+        ROS_INFO("No Object. RUNNING");
+        status_ = NodeStatus::RUNNING;
+      }
+      else if ((now - last_fail_time_).toSec() > min_fail_duration_)
+      {
+        ROS_INFO("No Object. FAILURE");
+        status_ = NodeStatus::FAILURE;
+      }
+      else 
+      {
+        status_ = NodeStatus::RUNNING;
+      }
+      return status_;
     }
+    
     return onMessageReceived(msg_);
   }
 };
