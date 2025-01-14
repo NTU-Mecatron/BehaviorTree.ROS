@@ -15,7 +15,7 @@ set(ROS_DEPENDENCIES
     message_generation
     yolo_object_detection
     common_msg_srv
-    common_action_service_servers
+    # common_action_service_servers
     pixhawk
     )
 
@@ -67,31 +67,17 @@ include_directories( include ${catkin_INCLUDE_DIRS})
 ######################################################
 # EXAMPLES
 
-<<<<<<< HEAD
-# add_executable(example_bt examples/main.cpp)
-# add_dependencies(example_bt ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# target_link_libraries(example_bt ${catkin_LIBRARIES} )
-
-# add_executable(example_server examples/server.cpp)
-# add_dependencies(example_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# target_link_libraries(example_server ${catkin_LIBRARIES} )
-
-# add_executable(generate_tree_node_model examples/generate_tree_node_model.cpp)
+# add_executable(generate_tree_node_model scripts/generate_tree_node_model.cpp)
 # add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 # target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
-=======
-add_executable(generate_tree_node_model scripts/generate_tree_node_model.cpp)
-add_dependencies(generate_tree_node_model ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(generate_tree_node_model ${catkin_LIBRARIES} )
 
-add_executable(test_action src/test_action.cpp)
-add_dependencies(test_action ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_action ${catkin_LIBRARIES} )
+# add_executable(test_action src/test_action.cpp)
+# add_dependencies(test_action ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(test_action ${catkin_LIBRARIES} )
 
-add_executable(nav_through_gate src/nav_through_gate.cpp)
-add_dependencies(nav_through_gate ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(nav_through_gate ${catkin_LIBRARIES} )
->>>>>>> a14b303c1bc28cdd0f42cec10705e1bcdffbc926
+# add_executable(nav_through_gate src/nav_through_gate.cpp)
+# add_dependencies(nav_through_gate ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# target_link_libraries(nav_through_gate ${catkin_LIBRARIES} )
 ######################################################
 # INSTALL
 

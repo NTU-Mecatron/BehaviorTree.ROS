@@ -82,11 +82,13 @@ protected:
 
   ros::Subscriber subscriber_;
   ros::NodeHandle& node_;
+
   typename MessageT::ConstPtr msg_;
   float min_fail_duration_;
   ros::Time last_fail_time_ = ros::Time(0);
   bool is_new_msg_received_ = false;
   NodeStatus status_ = NodeStatus::RUNNING;
+  bool has_logged_fail_msg_ = false;
 
   void callback(const typename MessageT::ConstPtr& msg)
   {
@@ -102,12 +104,10 @@ protected:
       if (last_fail_time_ == ros::Time(0)) 
       {
         last_fail_time_ = now;
-        ROS_INFO("No Object. RUNNING");
         status_ = NodeStatus::RUNNING;
       }
       else if ((now - last_fail_time_).toSec() > min_fail_duration_)
       {
-        ROS_INFO("No Object. FAILURE");
         status_ = NodeStatus::FAILURE;
       }
       else 
